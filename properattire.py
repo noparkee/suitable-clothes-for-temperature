@@ -21,7 +21,7 @@ for j in root.iter('max'):
     max_text.append(float(j.text))
 
 
-def toohot(temp, s1):
+def toocold(temp, s1):
     string = 'clothes' + str(s1)
 
     for c in root.findall(string):
@@ -35,7 +35,7 @@ def toohot(temp, s1):
     return
 
 
-def toocold(temp, s1):
+def toohot(temp, s1):
     string = 'clothes' + str(s1)
 
     for c in root.findall(string):

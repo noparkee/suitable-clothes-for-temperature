@@ -9,33 +9,31 @@ def findnumber(str):
         if str == list[i]:
             return i
 
-def toohot(temp, s1):
-    doc = ET.parse('clotheslist.xml')
-    root = doc.getroot()
-
-    string = 'clothes' + str(s1)
-
-    for c in root.findall(string):
-        c.find('min').text = str(temp)
-        if float(c.find('min').text) > float(c.find('max').text):
-            c.find('max').text = str(temp)
-
-    tree = ElementTree(root)
-    tree.write('./' + 'clotheslist' + '.xml')
-
-    return
-
-
 def toocold(temp, s1):
     doc = ET.parse('clotheslist.xml')
     root = doc.getroot()
 
     string = 'clothes' + str(s1)
-
+    t = temp + 0.5
     for c in root.findall(string):
-        c.find('max').text = str(temp)
+        c.find('min').text = str(t)
+        if float(c.find('min').text) > float(c.find('max').text):
+            c.find('max').text = str(t)
+
+    tree = ElementTree(root)
+    tree.write('./' + 'clotheslist' + '.xml')
+    return
+
+def toohot(temp, s1):
+    doc = ET.parse('clotheslist.xml')
+    root = doc.getroot()
+
+    string = 'clothes' + str(s1)
+    t = temp - 0.5
+    for c in root.findall(string):
+        c.find('max').text = str(t)
         if float(c.find('max').text) < float(c.find('min').text):
-            c.find('min').text = str(temp)
+            c.find('min').text = str(t)
 
     tree = ElementTree(root)
     tree.write('./' + 'clotheslist' + '.xml')

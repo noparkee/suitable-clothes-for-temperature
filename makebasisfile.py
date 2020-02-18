@@ -1,6 +1,5 @@
 # 처음 한 번만 실행
 from xml.etree.ElementTree import Element, SubElement, ElementTree
-import os
 
 def makebasis():
     root = Element('clotheslists')
@@ -154,6 +153,4 @@ def makebasis():
 
     fp = open('myrecommendation.txt', 'wt')             # 바로 직전 추천 내역 기록용
     fp.write(str(0))
-
-if os.path.isfile("myrecommendation.txt") is False:
-    makebasis()
+    fp.close()

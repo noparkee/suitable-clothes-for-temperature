@@ -12,6 +12,7 @@ from evaluation import Ui_evaluationwindow
 from recommendation import Ui_recommendationwindow
 from PyQt5.QtWidgets import QMessageBox
 from makebasisfile import makebasis
+import os
 
 class Ui_mainwindow(object):
 
@@ -75,7 +76,9 @@ class Ui_mainwindow(object):
 
 if __name__ == "__main__":
     import sys
-    makebasis()
+
+    if os.path.isfile("myrecommendation.txt") == False:
+        makebasis()
     app = QtWidgets.QApplication(sys.argv)
     mainwindow = QtWidgets.QDialog()
     ui = Ui_mainwindow()
