@@ -5,6 +5,7 @@ import urllib
 list = ['민소매', '반팔', '반바지', '원피스', '얇은 셔츠', '면바지', '얇은 가디건', '긴팔', '청바지', '얇은 니트', '맨투맨',
             '가디건', '자켓', '야상', '스타킹', '트렌츠 코트', '니트', '코트', '가죽 자켓', '레깅스', '패딩', '두꺼운 코트', '목도리', '기모제품']
 
+
 def selectyourclothes(temp, root):
 
     min_text = []
@@ -20,19 +21,22 @@ def selectyourclothes(temp, root):
         if min_text[i] <= temp <= max_text[i]:
             select.append(i)
             a += 1
+
     if a != 0:              # 범위내에 적절한 옷이 있을 때
         return select
     else:                   # 범위내에 적절한 옷이 없을 때
         b = 0
-        t = temp
+        tem = 0.5
         while b == 0:
             for j in range(0, 24):
-                if min_text[j] <= t + 0.5 <= max_text[j]:
+                if min_text[j] <= temp + tem <= max_text[j]:
                     b += 1
                     select.append(j)
-                if min_text[j] <= t - 0.5 <= max_text[j]:
+                if min_text[j] <= temp - tem <= max_text[j]:
                     b += 1
                     select.append(j)
+            tem = tem + 0.5
+
         return select
 
 def gettemperature(city):

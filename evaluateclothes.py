@@ -14,10 +14,20 @@ def toocold(temp, s1):
     root = doc.getroot()
 
     string = 'clothes' + str(s1)
-    t = temp + 0.5
+    t = temp + 0.3
+
     for c in root.findall(string):
-        c.find('min').text = str(t)
-        if float(c.find('min').text) > float(c.find('max').text):
+        max = float(c.find('max').text)
+        min = float(c.find('min').text)
+
+        if min > temp:  # t 근처에 옷이 없는 경우, t가 min보다 작은데 추천되었고, 그에 대한 평가로 춥다고 할 때.
+            min = min + 0.3
+            c.find('min').text = str(t)
+        elif min < temp:  # t가 min보다 큰 경우
+            min = temp
+            c.find('min').text = str(t)
+
+        if max < min:  # max와 min이 바뀌는거 방지
             c.find('max').text = str(t)
 
     tree = ElementTree(root)
@@ -29,10 +39,20 @@ def toohot(temp, s1):
     root = doc.getroot()
 
     string = 'clothes' + str(s1)
-    t = temp - 0.5
+    t = temp - 0.3
+
     for c in root.findall(string):
-        c.find('max').text = str(t)
-        if float(c.find('max').text) < float(c.find('min').text):
+        max = float(c.find('max').text)
+        min = float(c.find('min').text)
+
+        if max < temp:             # t 근처에 옷이 없는 경우, max가 t보다 작은데 추천되었고, 그에 대한 평가로 덥다고 할 때.
+            max = max - 0.3
+            c.find('max').text = str(t)
+        elif max > temp:           # t보다 max가 큰 경우
+            max = t
+            c.find('max').text = str(t)
+
+        if max < min:       # max와 min이 바뀌는거 방지
             c.find('min').text = str(t)
 
     tree = ElementTree(root)
