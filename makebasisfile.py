@@ -1,7 +1,7 @@
 # 처음 한 번만 실행
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 
-def makebasis():
+def makebasisxml():
     root = Element('clotheslists')
 
     minsomae = SubElement(root, 'clothes0')
@@ -151,6 +151,7 @@ def makebasis():
     tree = ElementTree(root)
     tree.write('./' + 'clotheslist' + '.xml')
 
+def makebasistxt():
     fp = open('myrecommendation.txt', 'wt')             # 바로 직전 추천 내역 기록용
     fp.write(str(0))
     fp.close()

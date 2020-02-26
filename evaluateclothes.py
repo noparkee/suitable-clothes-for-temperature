@@ -21,8 +21,8 @@ def toocold(temp, s1):
         min = float(c.find('min').text)
 
         if min > temp:  # t 근처에 옷이 없는 경우, t가 min보다 작은데 추천되었고, 그에 대한 평가로 춥다고 할 때.
-            min = min + 0.3
-            c.find('min').text = str(t)
+            min = min + 0.1
+            c.find('min').text = str(min)
         elif min < temp:  # t가 min보다 큰 경우
             min = temp
             c.find('min').text = str(t)
@@ -46,8 +46,8 @@ def toohot(temp, s1):
         min = float(c.find('min').text)
 
         if max < temp:             # t 근처에 옷이 없는 경우, max가 t보다 작은데 추천되었고, 그에 대한 평가로 덥다고 할 때.
-            max = max - 0.3
-            c.find('max').text = str(t)
+            max = max - 0.1
+            c.find('max').text = str(max)
         elif max > temp:           # t보다 max가 큰 경우
             max = t
             c.find('max').text = str(t)

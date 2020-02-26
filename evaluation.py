@@ -15,7 +15,7 @@ class Ui_evaluationwindow(object):
 
     def printpreviouscondition(self):
         f = open('myrecommendation.txt', 'rt')
-        fir = f.readline()  # 이전 추천 내역이 있는지 없는지 확인
+        f.readline()
         condition = f.readline()            # 이게 조건
         self.nowlabel_2.setText(condition)
         rec = f.readlines()

@@ -17,7 +17,7 @@ from datetime import datetime
 class Ui_recommendationwindow(object):
 
     def selection(self):
-        #try:
+        try:
             city = self.lineEditCity.text()
             temp = gettemperature(city)
             doc = ET.parse('clotheslist.xml')
@@ -40,8 +40,8 @@ class Ui_recommendationwindow(object):
 
             saverecommendation(select, temp, city, y, m, d, h, mi)
 
-        #except:     #흠 예외처리 어케 하지?
-         #   QMessageBox.about(self.inputOK, "Input", "Invalid Value!  ")
+        except:     #흠 예외처리 어케 하지?
+            QMessageBox.about(self.inputOK, "Input", "Invalid Value!  ")
 
     def setupUi(self, recommendationwindow):
         recommendationwindow.setObjectName("recommendationwindow")

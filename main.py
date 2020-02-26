@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from evaluation import Ui_evaluationwindow
 from recommendation import Ui_recommendationwindow
 from PyQt5.QtWidgets import QMessageBox
-from makebasisfile import makebasis
+from makebasisfile import makebasistxt, makebasisxml
 import os
 
 class Ui_mainwindow(object):
@@ -28,6 +28,7 @@ class Ui_mainwindow(object):
             self.ui = Ui_evaluationwindow()
             self.ui.setupUi(self.window)
             self.window.show()
+            f.close()
 
     def openRecommendation(self):
         self.window = QtWidgets.QMainWindow()
@@ -78,7 +79,9 @@ if __name__ == "__main__":
     import sys
 
     if os.path.isfile("myrecommendation.txt") == False:
-        makebasis()
+        makebasistxt()
+    if os.path.isfile("clotheslist.xml") == False:
+        makebasisxml()
     app = QtWidgets.QApplication(sys.argv)
     mainwindow = QtWidgets.QDialog()
     ui = Ui_mainwindow()
